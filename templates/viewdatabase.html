@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | She Secure</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure to link your CSS file -->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Hide scrollbars */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #vanta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place the background behind other content */
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-top: 20px;
+            font-size: 36px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        table {
+            width: 80%;
+            margin: 40px auto;
+            border-collapse: collapse;
+            font-size: 18px;
+            background-color: rgba(20, 20, 30, 0.8); /* Dark semi-transparent background */
+            color: #f8f8f8;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px); /* Adds a frosted glass effect */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effect */
+            z-index: 1; /* Ensure table is above background */
+            position: relative; /* Ensure z-index works */
+        }
+        table:hover {
+            background-color: rgba(30, 30, 40, 0.9); /* Slightly darker background on hover */
+            transform: scale(1.02); /* Slightly enlarges the table on hover */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); /* Deepens the shadow on hover */
+        }
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        th {
+            background-color: rgba(70, 130, 180, 0.7); /* Steel blue with transparency */
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05); /* Light gray for even rows */
+        }
+        tr:hover {
+            background-color: rgba(70, 130, 180, 0.3) !important; /* Light steel blue on row hover */
+            transition: background-color 0.3s ease; /* Smooth transition for row hover */
+        }
+        td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Responsive table styling */
+        @media screen and (max-width: 600px) {
+            table {
+                width: 95%;
+                font-size: 15px;
+            }
+            th, td {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="vanta-bg">
+        <div>
+            <h1>DATABASES</h1>
+            <table border="1">
+                <tr>
+                    <th>USERID</th>
+                    <th>PASSWORD</th>
+                    <th>TYPE</th>
+                    <th>STATION_NAME</th>
+                    <th>BOOTH_NUMBER</th>
+                    <th>LOCATION</th>
+                    <th>TELEPHONE_NUMBER</th>
+                </tr>
+                {% for login in login %}
+                <tr>
+                    <td>{{ login['USERID'] }}</td>
+                    <td>{{ login['PASSWORD'] }}</td>
+                    <td>{{ login['TYPE'] }}</td>
+                    <td>{{ login['STATION_NAME'] }}</td>
+                    <td>{{ login['BOOTH_NUMBER'] }}</td>
+                    <td>{{ login['LOCATION'] }}</td>
+                    <td>{{ login['telephone_number'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div> <!-- Vanta.js background container -->
+
+    <!-- Include Three.js and Vanta.js from CDNs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.halo.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            VANTA.HALO({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00
+            });
+        });
+    </script>
+</body>
+</html>
